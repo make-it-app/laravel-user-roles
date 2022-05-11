@@ -4,8 +4,11 @@ A package with role subsystem.
 ### Installation
 `composer require make-it-app/laravel-user-roles`
 
-### Publish migrations and config files
+### Publish localization and config files
 `php artisan vendor:publish --provider="MakeIT\\UserRoles\\UserRolesServiceProvider" --tag="user-roles-install"`
+
+### Migrate
+`php artisan migrate`
 
 ### If You are using Laravel Nova
 `php artisan vendor:publish --provider="MakeIT\\UserRoles\\UserRolesServiceProvider" --tag="user-roles-nova"`
