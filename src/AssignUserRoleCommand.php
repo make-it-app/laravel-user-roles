@@ -3,35 +3,31 @@
 namespace MakeIT\UserRoles;
 
 use App\Models\User;
-use MakeIT\UserRoles\Role;
 use Illuminate\Console\Command;
 
 class AssignUserRoleCommand extends Command
 {
     /**
      * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'make-it-app:roles:assign-user-role {user : User <id>}';
 
     /**
      * The console command description.
-     *
      * @var string
      */
     protected $description = 'Command will assigns a role to the user';
 
     /**
      * Execute the console command.
-     *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
-        $user_id = $this->argument('user');
-        $User    = User::with([ 'roles' ])->findOrFail( $user_id );
-        $Roles   = Role::get()->pluck('name');
+        $user_id = $this->argument( 'user' );
+        $User    = User::with( [ 'roles' ] )->findOrFail( $user_id );
+        $Roles   = Role::get()->pluck( 'name' );
         $roles   = $this->choice(
             'Select roles for the user',
             $Roles->toArray(),
@@ -39,15 +35,14 @@ class AssignUserRoleCommand extends Command
             1,
             true
         );
-        foreach($roles as $role)
+        foreach ( $roles as $role )
         {
-            if ( ! $User->hasRole([ $role ]) )
+            if ( !$User->hasRole( [ $role ] ) )
             {
                 $User->assignRole( $role );
             }
         }
-        $User->load('roles');
-        dd($User->toArray());
+        $User->load( 'roles' );
         return 0;
     }
 }

@@ -52,14 +52,12 @@ class NovaRoles extends Resource
 
     /**
      * Build an "index" query for the given resource.
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
-     * @param \Illuminate\Database\Eloquent\Builder   $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param NovaRequest $request
+     * @param Builder     $query
+     * @return Builder
      */
     public static function indexQuery( NovaRequest $request, $query ): Builder
     {
-        $query->getQuery()->orders = [];
-        $query->orderBy( 'id' );
         return $query;
     }
 
