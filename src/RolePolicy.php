@@ -16,7 +16,11 @@ class RolePolicy
      */
     public function viewAny( User $user ): bool
     {
-        return true;
+        return $user->hasRole( [
+            'super',
+            'admin',
+            'support',
+        ] );
     }
 
     /**
@@ -27,7 +31,11 @@ class RolePolicy
      */
     public function view( User $user, Role $role ): bool
     {
-        return true;
+        return $user->hasRole( [
+            'super',
+            'admin',
+            'support',
+        ] ) || $role->users()->where( 'user_id', $user->id )->count() > 0;
     }
 
     /**
@@ -95,7 +103,6 @@ class RolePolicy
     {
         return $user->hasRole( [
             'super',
-            'admin',
         ] );
     }
 
@@ -128,7 +135,7 @@ class RolePolicy
                 'super',
                 'admin',
                 'support',
-            ] ) || ( $role->name != 'user' && $role != 'super' ) );
+            ] ) && !in_array( $role->name, [ 'user', 'super'] );
     }
 
     /**
