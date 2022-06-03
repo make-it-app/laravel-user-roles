@@ -135,7 +135,7 @@ class RolePolicy
                 'super',
                 'admin',
                 'support',
-            ] ) && !in_array( $role->name, [ 'user', 'super'] );
+            ] ) && !in_array( $role->name, [ 'user', 'super'] ) );
     }
 
     /**
