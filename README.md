@@ -13,6 +13,11 @@ A package with role subsystem.
 ### If You are using Laravel Nova
 `php artisan vendor:publish --provider="MakeIT\\UserRoles\\UserRolesServiceProvider" --tag="user-roles-nova"`
 
+Add BelongsToMany Field to `\App\Nova\User.php` file
+`BelongsToMany::make( __( 'Roles' ), 'roles', NovaRoles::class ),`
+
+You are free to rename published `NovaRoles.php` file.
+
 ### User Model Modifications
 ```php
 namespace App\Models;
