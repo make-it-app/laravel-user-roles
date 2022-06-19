@@ -11,7 +11,7 @@ class AssignUserRoleCommand extends Command
      * The name and signature of the console command.
      * @var string
      */
-    protected $signature = 'make-it-app:roles:assign-user-role {user : User <id>}';
+    protected $signature = 'makeit:roles:assign-user-role {user : User <id>}';
 
     /**
      * The console command description.
