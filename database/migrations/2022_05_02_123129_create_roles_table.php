@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection( 'public' )->create( 'roles', function ( Blueprint $table )
+        Schema::create( 'roles', function ( Blueprint $table )
         {
             $table->bigIncrements( 'id' );
             $table->string( 'name' );
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         } );
-        Schema::connection( 'public' )->create( 'role_user', function ( Blueprint $table )
+        Schema::create( 'role_user', function ( Blueprint $table )
         {
             $table->bigInteger( 'role_id' );
             $table->uuid( 'user_id' );
@@ -43,7 +43,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::connection( 'public' )->drop( 'role_user' );
-        Schema::connection( 'public' )->drop( 'roles' );
+        Schema::drop( 'role_user' );
+        Schema::drop( 'roles' );
     }
 };
